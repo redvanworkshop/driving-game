@@ -15,7 +15,7 @@
     <meta name="apple-mobile-web-app-title" content="RVW Game">
     <meta name="application-name" content="RVW Game">
 
-    <meta name="description" content="Old School Driving Game featuring our Red Van">
+    <meta name="description" content="Old School Driving Game featuring the Red Van. The Farther you drive, the Harder it gets.">
     <meta name="cache-control" content="public">
     <meta name="company" content="Red Van Workshop">
     <meta name="googlebot" content="noindex,nofollow">
@@ -26,7 +26,7 @@
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:site" content="@redvanworkshop">
     <meta property="twitter:title" content="Red Van Workshop">
-    <meta property="twitter:description" content="Old School Driving Game featuring our Red Van">
+    <meta property="twitter:description" content="Old School Driving Game featuring the Red Van. The Farther you drive, the Harder it gets.">
     <meta property="twitter:creator" content="@redvanworkshop">
     <meta property="twitter:image" content="https://peter.build/red-van/driving-game/img/card.jpg">
     <meta property="twitter:image:alt" content="Red Van Workshop">
@@ -39,7 +39,7 @@
     <meta property="og:url" content="https://redvanworkshop.com/">
     <meta property="og:image" content="https://peter.build/red-van/driving-game/img/card.jpg">
     <meta property="og:site_name" content="Red Van Workshop">
-    <meta property="og:description" content="Old School Driving Game featuring our Red Van">
+    <meta property="og:description" content="Old School Driving Game featuring the Red Van. The Farther you drive, the Harder it gets.">
 
     <!-- Dublin Core Metadata -->
     <meta name="dc:language" content="en_US">
@@ -57,10 +57,10 @@
     <link rel="preload" href="audio/high-score.mp3" as="audio" type="audio/mp3">
     <link rel="preload" href="audio/game-over.mp3" as="audio" type="audio/mp3">
 
-    <title>Driving Game</title>
+    <title>RVW Game</title>
 
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?cb=v1.0.0">
+    <link rel="stylesheet" href="css/style.css?cb=v1.0.1">
   </head>
   <body>
     <div class="use-landscape">
@@ -99,6 +99,6 @@
     <script src="js/md5.js"></script>
     <script src="js/canvg.js"></script>
     <script src="js/howler.min.js"></script>
-    <script src="js/site.js?cb=v1.0.0&t=<?= md5(TOKEN) ?>"></script>
+    <script src="js/site.js?cb=v1.0.1&t=<?= md5(TOKEN) ?>"></script>
   </body>
 </html>

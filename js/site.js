@@ -3,7 +3,8 @@
     audio: {
       loop: null,
       highScore: null,
-      gameOver: null
+      gameOver: null,
+      paused: false
     },
     canvas: null,
     ctx: null,
@@ -86,17 +87,33 @@
   $.canvas2.height = $.canvas.height;
   $.ctx2 = $.canvas2.getContext('2d');
 
-  window.addEventListener('deviceorientation', handleOrientation);
+  window.addEventListener('deviceorientation', handleOrientation, false);
   window.addEventListener('keydown', keyDown, false);
   window.addEventListener('keyup', keyUp, false);
   window.addEventListener('touchend', touchEnd, false);
   window.addEventListener('touchstart', touchStart, false);
+  window.addEventListener('focus', audioStart);
+  window.addEventListener('blur', audioStop);
 
   window.onload = function () {
     setupAudio();
     drawBg();
     draw();
   };
+
+  function audioStart () {
+    if($.audio.paused) {
+      $.audio.paused = false;
+      $.audio.loop.play()
+    }
+  }
+
+  function audioStop () {
+    if($.audio.loop.playing()) {
+      $.audio.paused = true;
+      $.audio.loop.pause()
+    }
+  }
 
   function buildVan() {
     var vanWidth = 160,

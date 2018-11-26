@@ -47,6 +47,7 @@
       }
     },
     state: {
+      isMobile: false,
       bgpos: 0,
       breaking: true,
       crashed: false,
@@ -501,6 +502,8 @@
   }
 
   function handleOrientation(e) {
+    $.state.isMobile = true;
+
     var x = e.beta;
     var orientation = window.orientation;
     var offset = 10;
@@ -704,10 +707,11 @@
         localStorage.setItem('username', user.toUpperCase());
 
         var params = getParams();
-        var hash = md5(params.t + '' + user + '' + currentScore)
+        var hash = md5(params.t + '' + user + '' + currentScore);
+        var isMobile = ($.state.isMobile) ? 1 : 0;
 
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'scores.php?hash=' + hash + '&user=' + user.toUpperCase() + '&score=' + currentScore);
+        xhr.open('POST', 'scores.php?hash=' + hash + '&user=' + user.toUpperCase() + '&score=' + currentScore + '&mobile=' + isMobile);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
         xhr.onload = function() {
@@ -723,8 +727,9 @@
 
   function showLeaderBoard () {
     var ac = new Date().getTime();
+    var isMobile = ($.state.isMobile) ? 1 : 0;
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'scores.php?ac=' + ac);
+    xhr.open('GET', 'scores.php?ac=' + ac + '&mobile=' + isMobile);
     xhr.onload = function() {
       if (xhr.status === 200) {
         var res = JSON.parse(xhr.responseText);
@@ -770,6 +775,8 @@
   }
 
   function touchEnd(e) {
+    $.state.isMobile = true;
+
     if (e.target.type !== 'text') {
       if ($.state.crashed) {
         e.preventDefault();
@@ -782,6 +789,8 @@
   }
 
   function touchStart(e) {
+    $.state.isMobile = true;
+
     if (e.target.type !== 'text') {
       if ($.state.crashed) {
         e.preventDefault();

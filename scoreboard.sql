@@ -9,6 +9,7 @@ CREATE TABLE `scoreboard` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user` char(3) NOT NULL,
   `score` int(10) unsigned DEFAULT NULL,
+  `mobile` int(1) unsigned NOT NULL DEFAULT '0',
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `user` (`user`)

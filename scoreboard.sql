@@ -12,7 +12,8 @@ CREATE TABLE `scoreboard` (
   `mobile` int(1) unsigned NOT NULL DEFAULT '0',
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  KEY `user` (`user`)
+  KEY `user` (`user`),
+  KEY `mobile` (`mobile`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 SET FOREIGN_KEY_CHECKS = 1;

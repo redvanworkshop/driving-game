@@ -9,7 +9,7 @@ try {
 
   if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $mobile = (!empty($_REQUEST['mobile']) && $_REQUEST['mobile'] === '1') ? 1 : 0;
-    $statement = $db->query("SELECT `s`.`user`, DATE_FORMAT(`s`.`date`, '%c/%d/%y') as `date`, FORMAT(`sub`.`high_score`, 0) as `high_score` FROM `scoreboard` s JOIN (SELECT MAX(`score`) as `high_score`, `user` FROM `scoreboard` WHERE `mobile` = $mobile GROUP BY `user`) sub ON (`sub`.`user` = `s`.`user` AND `sub`.`high_score` = `s`.`score`) ORDER BY `sub`.`high_score` DESC;");
+    $statement = $db->query("SELECT `s`.`user`, DATE_FORMAT(`s`.`date`, '%c/%d/%y') as `date`, FORMAT(`sub`.`high_score`, 0) as `high_score` FROM `scoreboard` s JOIN (SELECT MAX(`score`) as `high_score`, `user` FROM `scoreboard` WHERE `mobile` = $mobile GROUP BY `user`) sub ON (`sub`.`user` = `s`.`user` AND `sub`.`high_score` = `s`.`score`) WHERE `mobile` = $mobile ORDER BY `sub`.`high_score` DESC;");
     $statement->execute();
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
 

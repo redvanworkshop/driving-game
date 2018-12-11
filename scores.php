@@ -16,18 +16,17 @@ try {
     exit(json_encode($results));
   } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $hash = $_REQUEST['hash'];
+    $timestamp = $_REQUEST['timestamp'];
     $user = $_REQUEST['user'];
     $score = $_REQUEST['score'];
     $mobile = $_REQUEST['mobile'];
-
-    $token = md5(TOKEN);
-    $checkHash = md5($token . '' . $user . '' . $score);
+    $token = md5(TOKEN . $timestamp);
 
     if (empty($mobile)) {
       $mobile = 0;
     }
 
-    if ($checkHash === $hash) {
+    if ($token === $hash) {
       $statement = $db->prepare("INSERT INTO `scoreboard` (`user`, `score`, `mobile`) VALUES (?, ?, ?)");
       $statement->execute([$user, $score, $mobile]);
 

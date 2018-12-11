@@ -96,9 +96,8 @@
 
     <canvas height="450" width="750" id="driving-game" oncontextmenu="return false;"></canvas>
 
-    <script src="js/md5.js"></script>
     <script src="js/canvg.js"></script>
     <script src="js/howler.min.js"></script>
-    <script src="js/site.js?cb=v1.0.2&t=<?= md5(TOKEN) ?>"></script>
+    <script src="js/site.js?cb=v1.0.2&t=<?= TIMESTAMP ?>&h=<?= md5(TOKEN . TIMESTAMP) ?>"></script>
   </body>
 </html>

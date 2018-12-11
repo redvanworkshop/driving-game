@@ -8,10 +8,7 @@ try {
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
   if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $mobile = $_REQUEST['mobile'];
-    if (empty($mobile)) {
-      $mobile = 0;
-    }
+    $mobile = (!empty($_REQUEST['mobile']) && $_REQUEST['mobile'] === '1') ? 1 : 0;
     $statement = $db->query("SELECT `s`.`user`, DATE_FORMAT(`s`.`date`, '%c/%d/%y') as `date`, FORMAT(`sub`.`high_score`, 0) as `high_score` FROM `scoreboard` s JOIN (SELECT MAX(`score`) as `high_score`, `user` FROM `scoreboard` WHERE `mobile` = $mobile GROUP BY `user`) sub ON (`sub`.`user` = `s`.`user` AND `sub`.`high_score` = `s`.`score`) ORDER BY `sub`.`high_score` DESC;");
     $statement->execute();
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);

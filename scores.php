@@ -15,20 +15,20 @@ try {
 
     exit(json_encode($results));
   } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $hash = $_REQUEST['hash'];
-    $timestamp = $_REQUEST['timestamp'];
+    $token = $_REQUEST['token'];
     $user = $_REQUEST['user'];
     $score = $_REQUEST['score'];
     $mobile = $_REQUEST['mobile'];
-    $token = md5(TOKEN . $timestamp);
 
     if (empty($mobile)) {
       $mobile = 0;
     }
 
-    if ($token === $hash) {
+    if ($token === $_SESSION['token']) {
       $statement = $db->prepare("INSERT INTO `scoreboard` (`user`, `score`, `mobile`) VALUES (?, ?, ?)");
       $statement->execute([$user, $score, $mobile]);
+
+      $_SESSION['token'] = bin2hex(random_bytes(32));
 
       exit(json_encode(array('success' => true)));
     } else {

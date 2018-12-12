@@ -98,6 +98,6 @@
 
     <script src="js/canvg.js"></script>
     <script src="js/howler.min.js"></script>
-    <script src="js/site.js?cb=v1.0.2&t=<?= TIMESTAMP ?>&h=<?= md5(TOKEN . TIMESTAMP) ?>"></script>
+    <script src="js/site.js?cb=v1.0.2&t=<?= $_SESSION['token'] ?>"></script>
   </body>
 </html>

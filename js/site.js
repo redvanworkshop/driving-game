@@ -707,12 +707,11 @@
         localStorage.setItem('username', user.toUpperCase());
 
         var params = getParams();
-        var timestamp = params.t;
-        var hash = params.h;
+        var token = params.t;
         var isMobile = ($.state.isMobile) ? 1 : 0;
 
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'scores.php?hash=' + hash + '&timestamp=' + timestamp + '&user=' + user.toUpperCase() + '&score=' + currentScore + '&mobile=' + isMobile);
+        xhr.open('POST', 'scores.php?token=' + token + '&user=' + user.toUpperCase() + '&score=' + currentScore + '&mobile=' + isMobile);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
         xhr.onload = function() {

@@ -15,23 +15,29 @@ try {
 
     exit(json_encode($results));
   } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $hash = $_REQUEST['hash'];
     $token = $_REQUEST['token'];
     $user = $_REQUEST['user'];
     $score = $_REQUEST['score'];
     $mobile = $_REQUEST['mobile'];
 
+    $checkHash = md5(TOKEN . $_SESSION['timestamp']);
+
     if (empty($mobile)) {
       $mobile = 0;
     }
 
-    if ($token === $_SESSION['token']) {
+    if ($token === $_SESSION['token'] && $checkHash == $hash) {
       $statement = $db->prepare("INSERT INTO `scoreboard` (`user`, `score`, `mobile`) VALUES (?, ?, ?)");
       $statement->execute([$user, $score, $mobile]);
 
+      $_SESSION['timestamp'] = time();
       $_SESSION['token'] = bin2hex(random_bytes(32));
 
       exit(json_encode(array('success' => true)));
     } else {
+      $_SESSION['timestamp'] = time();
+      $_SESSION['token'] = bin2hex(random_bytes(32));
       exit(json_encode(array('success' => false, 'error' => 'Invalid POST Detected')));
     }
   }

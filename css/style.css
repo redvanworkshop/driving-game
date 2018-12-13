@@ -86,6 +86,7 @@ canvas {
   overflow: auto;
   height: calc(100% - 70px);
   margin-bottom: 8px;
+  white-space: nowrap;
 }
 
 #leaderboard .wrapper h1 {

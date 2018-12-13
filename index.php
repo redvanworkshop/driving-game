@@ -60,7 +60,7 @@
     <title>RVW Game</title>
 
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?cb=v1.0.2">
+    <link rel="stylesheet" href="css/style.css?cb=v1.0.3">
   </head>
   <body>
     <div class="use-landscape">
@@ -98,6 +98,6 @@
 
     <script src="js/canvg.js"></script>
     <script src="js/howler.min.js"></script>
-    <script src="js/site.js?cb=v1.0.2&t=<?= $_SESSION['token'] ?>&h=<?= md5(TOKEN . $_SESSION['timestamp']) ?>"></script>
+    <script src="js/site.js?cb=v1.0.3&t=<?= $_SESSION['token'] ?>&h=<?= md5(TOKEN . $_SESSION['timestamp']) ?>"></script>
   </body>
 </html>
